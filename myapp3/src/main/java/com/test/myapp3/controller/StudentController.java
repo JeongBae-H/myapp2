@@ -14,15 +14,11 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.PutMapping;
 
-
-
-
-// Restful Http GET, POST, DELETE, PATCH
+// Restful Http GET, POST, PUT, DELETE, PATCH
 @RequestMapping("api/students")
 @RestController
 public class StudentController {
@@ -31,29 +27,29 @@ public class StudentController {
     private StudentService studentService;
 
     @GetMapping
-    public List<Student> getAll() {
+    public List<Student> getAllStudents() {
         return studentService.getAllStudents();
     }
     @PostMapping
-    public ResponseEntity<Student> creaStudent(@RequestBody Student student) {
+    public ResponseEntity<Student> createStudent(@RequestBody Student student) {
         Student savedStudent = studentService.createStudent(student);
         return new ResponseEntity<>(savedStudent, HttpStatus.CREATED);
     }
     @GetMapping("{id}")
-    public ResponseEntity<Student> getStudentById(@PathVariable Long Id) {
+    public ResponseEntity<Student> getStudentById(@PathVariable("id") Long Id){
         Student student = studentService.getStudentById(Id);
         return new ResponseEntity<>(student, HttpStatus.OK);
     }
     @DeleteMapping("{id}")
-    public ResponseEntity<String> deleteStudent(@PathVariable Long Id) {
+    public ResponseEntity<String> deleteStudent(@PathVariable("id") Long Id){
         studentService.deleteStudent(Id);
         return new ResponseEntity<>("Student deleted", HttpStatus.OK);
     }
     @PutMapping("{id}")
-    public ResponseEntity<Student> updateStudent(@PathVariable Long Id, @RequestBody Student student) {
-        student.setId(Id);
-        Student updatedStudent = studentService.updateStudent(student);
-        studentService.updateStudent(student);
+    public ResponseEntity<Student> updateStudent(
+        @PathVariable("id") Long Id, @RequestBody Student student){
+        student.setId(Id); 
+        Student updatedStudent = studentService.updateStudent(student);     
         return new ResponseEntity<>(updatedStudent, HttpStatus.OK);
     }
 }
