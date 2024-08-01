@@ -9,6 +9,16 @@
             "projectName": "myapp3",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-Myapp4Application<myapp4>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.test.myapp4.Myapp4Application",
+            "projectName": "myapp4",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
         }
     ]
 }
