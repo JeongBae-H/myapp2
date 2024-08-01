@@ -1,8 +1,19 @@
 <html>
     <head>
         <title>list</title>
+        <style>
+            span {
+              display: inline-block;
+              width: 50px;
+              margin-top: 15px;
+              margin-left: 10px;
+              font-weight: bold;
+            }
+          </style>
     </head>
     <body>
+        <a href="/students/insertForm">추가</a>
+        <p></p>
         <table border="1">
             <tr>
                 <th>Id</th>
@@ -10,7 +21,7 @@
                 <th>Email</th>
             </tr>
             <tr>
-                <th th:each="student: ${students}">
+                <tr th:each="student : ${students}">
                     <td th:text="${student.id}"></td>
                     <td th:text="${student.name}"></td>
                     <td th:text="${student.email}"></td>

@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import com.test.myapp3.entity.Student;
 import com.test.myapp3.service.StudentService;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -23,5 +24,14 @@ public class StudentUiController {
         List<Student> students = studentService.getAllStudents();
         model.addAttribute("students", students);
         return "list.html";
+    }
+    @GetMapping("/insertForm")
+    public String insertForm() {
+        return "insert.html";
+    }
+    @PostMapping("/insert")
+    public String insert(Student student) {
+        studentService.createStudent(student);
+        return "redirect:list";
     }
 }
