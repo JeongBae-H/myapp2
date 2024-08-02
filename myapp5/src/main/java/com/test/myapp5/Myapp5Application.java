@@ -28,6 +28,8 @@ public class Myapp5Application implements CommandLineRunner  {
 		EmployeeManager employeeManager =
 			applicationContext.getBean(EmployeeManager.class);
 			System.out.println(employeeManager.getAddress());
-
+		
+		DbManager dbManager = applicationContext.getBean(DbManager.class);
+		dbManager.dbOpen();
 	}
 }
